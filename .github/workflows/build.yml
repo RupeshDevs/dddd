@@ -1,5 +1,4 @@
-- name: Build APK
-  run: yes | buildozer -v android debug
+name: Build APK
 
 on:
   workflow_dispatch:
@@ -8,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -23,7 +23,7 @@ jobs:
           pip install buildozer cython==0.29.36
 
       - name: Build APK
-        run: buildozer -v android debug
+        run: yes | buildozer -v android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
